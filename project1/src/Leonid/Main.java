@@ -2,8 +2,11 @@ package Leonid;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Main {
+public class Main{
+    Button button;
     public static void main(String[] args) {
 //        Resistor res1 = new Resistor("yellow", "yellow", "yellow");
 //        System.out.println(res1);
@@ -56,27 +59,13 @@ public class Main {
         panel5.setBounds(418, 25, 60, 180);
         frame.add(panel5);
 
-        JPanel btnPanel = new JPanel();
-        btnPanel.setBackground(new Color(0xEDFBC1));
-        btnPanel.setBounds(450, 290, 127, 40);
-        frame.add(btnPanel);
-
-        JButton button = new JButton("REFRESH");
-        btnPanel.add(button);
-//        btnPanel.revalidate();
-//        btnPanel.repaint();
-
-        JLabel text = new JLabel();
-        text.setText("10_000_TEST_000 Ohm +/- N/A");
-        text.setForeground(Color.black);
-        text.setFont(new Font("Rubik", Font.PLAIN, 24));
-        text.setBounds(25, 290 , 500, 40);
-        frame.add(text);
-
-
-
+        JLabel textLabel = new JLabel();
+        textLabel.setText("10_000_TEST_000 Ohm +/- N/A");
+        textLabel.setForeground(Color.black);
+        textLabel.setFont(new Font("Rubik", Font.PLAIN, 24));
+        textLabel.setBounds(25, 290 , 500, 40);
+        frame.add(textLabel);
         frame.setVisible(true);
-
 
 
     }
