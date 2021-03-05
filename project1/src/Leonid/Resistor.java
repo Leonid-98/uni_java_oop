@@ -1,14 +1,8 @@
 package Leonid;
 
 public class Resistor extends ResistorsConfig {
-    private String line1;
-    private String line2;
-    private String line3;
-    private String line4;
-    private String line5;
-    private int lines;
-    private double resistance;
-    private String tolerance;
+    protected String line1, line2, line3, line4, line5;
+    private final int lines;
 
     public Resistor(String line1, String line2, String line3) {
         this.line1 = line1;
@@ -35,6 +29,7 @@ public class Resistor extends ResistorsConfig {
     }
 
     public double getResistance() {
+        double resistance;
         if (lines == 3) {
             resistance = (values.get(line1) * 10 + values.get(line2)) * multipliers.get(line3);
             return resistance;
@@ -49,6 +44,7 @@ public class Resistor extends ResistorsConfig {
     }
 
     public String getTolerance() {
+        String tolerance;
         if (lines == 4) {
             tolerance = "+/- " + tolerances.get(line4) + "%";
             return tolerance;
@@ -61,6 +57,6 @@ public class Resistor extends ResistorsConfig {
 
     @Override
     public String toString() {
-        return resistance + " Ohm " + tolerance;
+        return getResistance() + " Ohm. Tolerance: " + getTolerance();
     }
 }
