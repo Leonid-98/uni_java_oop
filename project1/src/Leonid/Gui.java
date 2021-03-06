@@ -6,33 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
 
-class MyFrame extends JFrame implements ActionListener {
+class MyFrame extends MyFrameConfig implements ActionListener {
     JButton button;
     JComboBox combobox1, combobox2, combobox3, combobox4, combobox5;
     JLabel textLabel;
     MyFrame() {
-        this.setTitle("title");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setSize(640, 400);
-        this.getContentPane().setBackground(new Color(0xEDFBC1));
-//        ImageIcon image = new ImageIcon("Six-Band-Resistor-Color-Code.png");
-//        this.setIconImage(image.getImage());
-
-        button = new JButton("GET RES");
-        button.setBackground(new Color(0xFAFFA9));
-        button.setFont(new Font("Rubik", Font.PLAIN, 20));
-        button.setBounds(450, 290, 127, 40);
+        button = new MyButton(450, 290);
         button.addActionListener(this);
         // button.addActionListener(e -> System.out.println("poo")); // без интерфейса
         this.add(button);
 
         String[] test = {"BLACK", "BROWN", "VIOLET", "YELLOW"};
 
-        combobox1 = new JComboBox(test);
-        combobox1.setBounds(70, 230, 95, 30);
-        combobox1.setBackground(new Color(0xFAFFA9));
-        combobox1.setFont(new Font("Rubik", Font.PLAIN, 16));
+        combobox1 = new MyComboBox();
         combobox1.addActionListener(this);
         this.add(combobox1);
 
@@ -65,18 +51,8 @@ class MyFrame extends JFrame implements ActionListener {
         this.add(combobox5);
 
 
-        JLabel label = new JLabel();
+        JLabel label = new MyLabel();
         this.add(label);
-
-
-        ImageIcon image = new ImageIcon("Six-Band-Resistor-Color-Code.png");
-        label.setIcon(image);
-        label.setHorizontalTextPosition(JLabel.CENTER); // set text LEFT< RIGHT < CNTER
-        label.setVerticalTextPosition(JLabel.BOTTOM); // top, cent, bottom
-        label.setVerticalAlignment(JLabel.TOP);
-        label.setHorizontalAlignment(JLabel.LEFT);
-        label.setBounds(15, 15 , 594, 350);
-
 
         this.setLayout(null);
 
@@ -130,8 +106,34 @@ class MyFrame extends JFrame implements ActionListener {
 
 class MyLabel extends JLabel{
     MyLabel(){
-        ;
+        ImageIcon image = new ImageIcon("Six-Band-Resistor-Color-Code.png");
+        this.setIcon(image);
+        this.setHorizontalTextPosition(JLabel.CENTER); // set text LEFT< RIGHT < CNTER
+        this.setVerticalTextPosition(JLabel.BOTTOM); // top, cent, bottom
+        this.setVerticalAlignment(JLabel.TOP);
+        this.setHorizontalAlignment(JLabel.LEFT);
+        this.setBounds(15, 15 , 594, 350);
     }
 }
 
+class MyButton extends JButton{
+    MyButton(int posx, int poxy){
+        this.setText("GET RES");
+        this.setBackground(new Color(0xFAFFA9));
+        this.setFont(new Font("Rubik", Font.PLAIN, 20));
+        this.setBounds(posx, poxy, 127, 40);
+    }
+}
+
+class MyComboBox extends JComboBox{
+    MyComboBox(){
+//        String[] test = {"BLACK", "BROWN", "VIOLET", "YELLOW"};
+//        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(test);
+//        this.setModel(model);
+        this.addItem("55");
+        this.setBounds(70, 230, 95, 30);
+        this.setBackground(new Color(0xFAFFA9));
+        this.setFont(new Font("Rubik", Font.PLAIN, 16));
+    }
+}
 
