@@ -12,7 +12,6 @@ import java.awt.Graphics;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Panel extends JPanel {
-
     private JButton firststdigitalvalue[] = new JButton[12];
     private JButton seconddigitalvalue[] = new JButton[12];
     private JButton decimalfactor[] = new JButton[12];
@@ -26,22 +25,19 @@ public class Panel extends JPanel {
     private Color seconddigitalvalueColor = Color.white;
     private Color decimalfactorColor = Color.white;
     private Color toleranceColor = Color.white;
-    private String test = "";
-    private String test1 = "";
-    private String test3 = "";
-    private String test4 = "";
-    private Double x;
-    private String testS = "";
-
-
+    private String fButton;
+    private String sButton;
+    private String result;
+    private String fhButton;
+    private String fdButton;
 
     protected void paintComponent(Graphics gr){
         super.paintComponent(gr);
         for (int x = 0; x < 12; x++){ gr.setFont(font); gr.drawString(colornames.get(x),15,x * 50 + 285);}
 
         gr.setFont(font1);
-        gr.drawString(test3,60,130);
-        gr.drawString(test4, 220, 130);
+        gr.drawString(result,60,130);
+        gr.drawString(fhButton, 220, 130);
 
         gr.setColor(firststdigitalvalueColor);gr.fillRect(427, 30, 50, 200);
         gr.setColor(seconddigitalvalueColor);gr.fillRect(515, 30, 50, 200);
@@ -53,7 +49,6 @@ public class Panel extends JPanel {
         JLabel imgLabel = new JLabel(new ImageIcon("C:\\Users\\Aleksandr_Viktoriya\\Desktop\\OOP_2021\\project1\\Six-Band-Resistor-Color-Code.png"));
         imgLabel.setBounds(250,-70,800,400);
         add(imgLabel);
-
 
         setLayout(null);
         colors[0] = new Color(192,192,192); colors[1] = new Color(255,215,0);
@@ -136,58 +131,43 @@ public class Panel extends JPanel {
             add(tolerance[x]);
         }
 
-        int randomNum = ThreadLocalRandom.current().nextInt(2, 12);
-        test = firststdigitalvalue[randomNum].getText();
-        firststdigitalvalueColor = firststdigitalvalue[randomNum].getBackground();
+        appereance("fButton",2,12,firststdigitalvalue);
+        appereance("sButton",2,12,seconddigitalvalue);
+        appereance("fdButton",0,12,decimalfactor);
+        appereance("fhButton",0,2, tolerance);
 
-        int randomNum1 = ThreadLocalRandom.current().nextInt(2, 12);
-        test1 = seconddigitalvalue[randomNum1].getText();
-        seconddigitalvalueColor = seconddigitalvalue[randomNum1].getBackground();
-
-        int randomNum2 = ThreadLocalRandom.current().nextInt(0, 12);
-        testS = decimalfactor[1].getText();
-        decimalfactorColor = decimalfactor[1].getBackground();
-        test3 = check(Double.valueOf(test) * 10 + Double.valueOf(test1),testS);
-
-
-        int randomNum3 = ThreadLocalRandom.current().nextInt(0, 2);
-        test4 = tolerance[randomNum3].getText();
-        toleranceColor = tolerance[randomNum3].getBackground();
+        result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
 
         ActionListener firstL = (ActionEvent e) -> {
             JButton b = (JButton)e.getSource();
-            System.out.println(b.getText());
             firststdigitalvalueColor = b.getBackground();
-            test = b.getText();
-            test3 = check(Double.valueOf(test) * 10 + Double.valueOf(test1),testS);
+            fButton = b.getText();
+            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
             repaint();
         };
 
         ActionListener secondL = (ActionEvent e) -> {
             JButton b = (JButton)e.getSource();
             seconddigitalvalueColor = b.getBackground();
-            test1 = b.getText();
-            test3 = check(Double.valueOf(test) * 10 + Double.valueOf(test1),testS);
+            sButton = b.getText();
+            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
             repaint();
         };
 
         ActionListener firdL = (ActionEvent e) -> {
             JButton b = (JButton)e.getSource();
             decimalfactorColor = b.getBackground();
-            testS = b.getText();
-            System.out.println(testS);
-            x = Double.valueOf(test) * 10 + Double.valueOf(test1);
-            test3 = check(x,testS);
+            fdButton = b.getText();
+            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
             repaint();
         };
 
         ActionListener fourthL = (ActionEvent e) -> {
             JButton b = (JButton)e.getSource();
             toleranceColor = b.getBackground();
-            test4 = b.getText();
+            fhButton = b.getText();
             repaint();
         };
-
 
         for (JButton b: firststdigitalvalue) { b.addActionListener(firstL); }
         for (JButton b: seconddigitalvalue) { b.addActionListener(secondL); }
@@ -209,4 +189,20 @@ public class Panel extends JPanel {
         return String.valueOf(x) + " " + om;
     }
 
+    public void appereance(String buttonString,int origin, int bounds, JButton[] list){
+        int randomNumber = ThreadLocalRandom.current().nextInt(origin, bounds);
+        if (buttonString.equals("fButton")) {
+            fButton = list[randomNumber].getText();
+            firststdigitalvalueColor = list[randomNumber].getBackground();
+        } else if (buttonString.equals("sButton")){
+            sButton = list[randomNumber].getText();
+            seconddigitalvalueColor = list[randomNumber].getBackground();
+        } else if (buttonString.equals("fdButton")){
+            fdButton = list[randomNumber].getText();
+            decimalfactorColor = list[randomNumber].getBackground();
+        } else  if (buttonString.equals("fhButton")) {
+            fhButton = list[randomNumber].getText();
+            toleranceColor = list[randomNumber].getBackground();
+        }
+    }
 }
