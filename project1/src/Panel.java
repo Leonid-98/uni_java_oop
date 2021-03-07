@@ -149,7 +149,7 @@ public class Panel extends JPanel {
 
         ActionListener switch4 = (ActionEvent e) -> {
             check = "4";
-            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton), fdButton);
+            thirdgitalvalueColor = Color.white;
             JButton b = (JButton)e.getSource();
             width = 180;
             for (int i = 0; i < firststdigitalvalue.length; i++){
@@ -175,7 +175,6 @@ public class Panel extends JPanel {
 
         ActionListener switch5 = (ActionEvent e) -> {
             check = "5";
-            result = check(Double.valueOf(fButton) * 100 + Double.valueOf(sButton) * 10 + Double.valueOf(extraButton), fdButton);
             JButton b = (JButton)e.getSource();
             width = 120;
             for (int i = 0; i < firststdigitalvalue.length; i++){
