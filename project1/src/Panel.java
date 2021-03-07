@@ -18,7 +18,7 @@ public class Panel extends JPanel {
     private JButton tolerance[] = new JButton[12];
     private Color colors[] = new Color[12];
     private Font font = new Font("SanSerif", Font.BOLD,20);
-    private Font font1 = new Font("SanSerif", Font.BOLD,30);
+    private Font font1 = new Font("SanSerif", Font.BOLD,70);
     private List<String> colornames = Arrays.asList("Hõbe","Kuld","Must","Pruun","Punane","Oranž","Kollane","Roheline","Sinine","Lilla","Hall","Valge");
     private ImageIO image;
     private Color firststdigitalvalueColor = Color.white;
@@ -33,21 +33,21 @@ public class Panel extends JPanel {
 
     protected void paintComponent(Graphics gr){
         super.paintComponent(gr);
-        for (int x = 0; x < 12; x++){ gr.setFont(font); gr.drawString(colornames.get(x),15,x * 50 + 285);}
+        for (int x = 0; x < 12; x++){ gr.setFont(font); gr.drawString(colornames.get(x),15,x * 37 + 427);}
 
         gr.setFont(font1);
-        gr.drawString(result,60,130);
-        gr.drawString(fhButton, 220, 130);
+        gr.drawString(result,280,100);
+        gr.drawString(fhButton, 650, 100);
 
-        gr.setColor(firststdigitalvalueColor);gr.fillRect(427, 30, 50, 200);
-        gr.setColor(seconddigitalvalueColor);gr.fillRect(515, 30, 50, 200);
-        gr.setColor(decimalfactorColor);gr.fillRect(650, 30, 50, 200);
-        gr.setColor(toleranceColor);gr.fillRect(760, 30, 50, 200);
+        gr.setColor(firststdigitalvalueColor);gr.fillRect(327, 170, 50, 200);
+        gr.setColor(seconddigitalvalueColor);gr.fillRect(415, 170, 50, 200);
+        gr.setColor(decimalfactorColor);gr.fillRect(550, 170, 50, 200);
+        gr.setColor(toleranceColor);gr.fillRect(660, 170, 50, 200);
     }
 
     public Panel(){
         JLabel imgLabel = new JLabel(new ImageIcon("C:\\Users\\Aleksandr_Viktoriya\\Desktop\\OOP_2021\\project1\\Six-Band-Resistor-Color-Code.png"));
-        imgLabel.setBounds(250,-70,800,400);
+        imgLabel.setBounds(150,70,800,400);
         add(imgLabel);
 
         setLayout(null);
@@ -64,7 +64,7 @@ public class Panel extends JPanel {
                 firststdigitalvalue[x] = new JButton( "-");
                 firststdigitalvalue[x].setEnabled(false);
             }
-            firststdigitalvalue[x].setBounds(215,x * 50 + 257,180,40);
+            firststdigitalvalue[x].setBounds(215,x *37 + 407,180,35);
             firststdigitalvalue[x].setFont(font);
             firststdigitalvalue[x].setBackground(colors[x]);
             if (x == 0 || x == 1) {
@@ -80,7 +80,7 @@ public class Panel extends JPanel {
                 seconddigitalvalue[x].setEnabled(false);
                 seconddigitalvalue[x].setBackground(colors[11]);
             }
-            seconddigitalvalue[x].setBounds(410,x * 50 + 257,180,40);
+            seconddigitalvalue[x].setBounds(410,x *37 + 407,180,35);
             seconddigitalvalue[x].setFont(font);
             seconddigitalvalue[x].setBackground(colors[x]);
             if (x == 0 || x == 1) {
@@ -102,7 +102,7 @@ public class Panel extends JPanel {
             else if (x == 9) { decimalfactor[x] = new JButton("x10M"); }
             else if (x == 10) { decimalfactor[x] = new JButton("x100M"); }
             else if (x == 11) { decimalfactor[x] = new JButton("x1G"); }
-            decimalfactor[x].setBounds(605,x * 50 + 257,180,40);
+            decimalfactor[x].setBounds(605,x *37 + 407,180,35);
             decimalfactor[x].setFont(font);
             decimalfactor[x].setBackground(colors[x]);
             add(decimalfactor[x]);
@@ -122,7 +122,7 @@ public class Panel extends JPanel {
             else if (x == 10) { tolerance[x] = new JButton("±0.05%");}
             else if (x == 11) { tolerance[x] = new JButton("-"); tolerance[x].setBackground(Color.white); tolerance[x].setEnabled(false);}
 
-            tolerance[x].setBounds(800,x * 50 + 257,180,40);
+            tolerance[x].setBounds(800,x *37 + 407,180,35);
             tolerance[x].setFont(font);
             tolerance[x].setBackground(colors[x]);
             if (x == 2 || x == 5 || x == 6 || x == 11) {
