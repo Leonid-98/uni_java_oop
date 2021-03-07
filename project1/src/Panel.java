@@ -1,3 +1,5 @@
+import com.sun.jdi.DoubleValue;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +14,11 @@ import java.awt.Graphics;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Panel extends JPanel {
+    private JButton fourRings = new JButton("4");
+    private JButton fiveRings = new JButton("5");
     private JButton firststdigitalvalue[] = new JButton[12];
     private JButton seconddigitalvalue[] = new JButton[12];
+    private JButton thirddigitalvalue[] = new JButton[12];
     private JButton decimalfactor[] = new JButton[12];
     private JButton tolerance[] = new JButton[12];
     private Color colors[] = new Color[12];
@@ -23,13 +28,17 @@ public class Panel extends JPanel {
     private ImageIO image;
     private Color firststdigitalvalueColor = Color.white;
     private Color seconddigitalvalueColor = Color.white;
+    private Color thirdgitalvalueColor = Color.white;
     private Color decimalfactorColor = Color.white;
     private Color toleranceColor = Color.white;
+    private String extraButton;
     private String fButton;
     private String sButton;
     private String result;
     private String fhButton;
     private String fdButton;
+    private int width = 180;
+    private String check = "4";
 
     protected void paintComponent(Graphics gr){
         super.paintComponent(gr);
@@ -37,10 +46,11 @@ public class Panel extends JPanel {
 
         gr.setFont(font1);
         gr.drawString(result,280,100);
-        gr.drawString(fhButton, 650, 100);
+        gr.drawString(fhButton, 750, 100);
 
         gr.setColor(firststdigitalvalueColor);gr.fillRect(327, 170, 50, 200);
         gr.setColor(seconddigitalvalueColor);gr.fillRect(415, 170, 50, 200);
+        gr.setColor(thirdgitalvalueColor);gr.fillRect(480, 170, 50, 200);
         gr.setColor(decimalfactorColor);gr.fillRect(550, 170, 50, 200);
         gr.setColor(toleranceColor);gr.fillRect(660, 170, 50, 200);
     }
@@ -58,91 +68,36 @@ public class Panel extends JPanel {
         colors[8] = new Color(0,191,255); colors[9] = new Color(139,0,255);
         colors[10] = new Color(128,128,128); colors[11] = new Color(255,255,255);
 
-        for (int x = 0; x < 12; x++){
-            firststdigitalvalue[x] = new JButton((x-2) + "");
-            if (x < 2) {
-                firststdigitalvalue[x] = new JButton( "-");
-                firststdigitalvalue[x].setEnabled(false);
-            }
-            firststdigitalvalue[x].setBounds(215,x *37 + 407,180,35);
-            firststdigitalvalue[x].setFont(font);
-            firststdigitalvalue[x].setBackground(colors[x]);
-            if (x == 0 || x == 1) {
-                firststdigitalvalue[x].setBackground(colors[11]);
-            }
-            add(firststdigitalvalue[x]);
-        }
+        fourRings.setBounds(20,50,45,40);
+        fiveRings.setBounds(70,50,45,40);
+        add(fourRings);
+        add(fiveRings);
 
-        for (int x = 0; x < 12; x++){
-            seconddigitalvalue[x] = new JButton((x-2) + "");
-            if (x < 2) {
-                seconddigitalvalue[x] = new JButton( "-");
-                seconddigitalvalue[x].setEnabled(false);
-                seconddigitalvalue[x].setBackground(colors[11]);
-            }
-            seconddigitalvalue[x].setBounds(410,x *37 + 407,180,35);
-            seconddigitalvalue[x].setFont(font);
-            seconddigitalvalue[x].setBackground(colors[x]);
-            if (x == 0 || x == 1) {
-                seconddigitalvalue[x].setBackground(colors[11]);
-            }
-            add(seconddigitalvalue[x]);
-        }
-
-        for (int x = 0; x < 12; x++){
-            if (x == 0) { decimalfactor[x] = new JButton("÷100");}
-            else if (x == 1) { decimalfactor[x] = new JButton("÷10"); }
-            else if (x == 2) { decimalfactor[x] = new JButton("x1"); }
-            else if (x == 3) { decimalfactor[x] = new JButton("x10"); }
-            else if (x == 4) { decimalfactor[x] = new JButton("x100"); }
-            else if (x == 5) { decimalfactor[x] = new JButton("x1K"); }
-            else if (x == 6) { decimalfactor[x] = new JButton("x10K"); }
-            else if (x == 7) { decimalfactor[x] = new JButton("x100K"); }
-            else if (x == 8) { decimalfactor[x] = new JButton("x1M"); }
-            else if (x == 9) { decimalfactor[x] = new JButton("x10M"); }
-            else if (x == 10) { decimalfactor[x] = new JButton("x100M"); }
-            else if (x == 11) { decimalfactor[x] = new JButton("x1G"); }
-            decimalfactor[x].setBounds(605,x *37 + 407,180,35);
-            decimalfactor[x].setFont(font);
-            decimalfactor[x].setBackground(colors[x]);
-            add(decimalfactor[x]);
-        }
-
-        for (int x = 0; x < 12; x++){
-            if (x == 0) { tolerance[x] = new JButton("±10%");}
-            else if (x == 1) { tolerance[x] = new JButton("±5%");}
-            else if (x == 2) { tolerance[x] = new JButton("-");tolerance[x].setEnabled(false);}
-            else if (x == 3) { tolerance[x] = new JButton("±1%");}
-            else if (x == 4) { tolerance[x] = new JButton("±2%");}
-            else if (x == 5) { tolerance[x] = new JButton("-");tolerance[x].setEnabled(false);}
-            else if (x == 6) { tolerance[x] = new JButton("-");tolerance[x].setEnabled(false);}
-            else if (x == 7) { tolerance[x] = new JButton("±0.5%");}
-            else if (x == 8) { tolerance[x] = new JButton("±0.25%");}
-            else if (x == 9) { tolerance[x] = new JButton("±0.10%");}
-            else if (x == 10) { tolerance[x] = new JButton("±0.05%");}
-            else if (x == 11) { tolerance[x] = new JButton("-"); tolerance[x].setBackground(Color.white); tolerance[x].setEnabled(false);}
-
-            tolerance[x].setBounds(800,x *37 + 407,180,35);
-            tolerance[x].setFont(font);
-            tolerance[x].setBackground(colors[x]);
-            if (x == 2 || x == 5 || x == 6 || x == 11) {
-                tolerance[x].setBackground(colors[11]);
-            }
-            add(tolerance[x]);
-        }
+        values(firststdigitalvalue, 215);
+        values(seconddigitalvalue,410);
+        values(thirddigitalvalue,-1000);
+        decimalfactor(605);
+        tolerance(800);
 
         appereance("fButton",2,12,firststdigitalvalue);
         appereance("sButton",2,12,seconddigitalvalue);
+        appereance("extraButton",2,12,thirddigitalvalue);
         appereance("fdButton",0,12,decimalfactor);
         appereance("fhButton",0,2, tolerance);
 
-        result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
+
+        result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton), fdButton);
 
         ActionListener firstL = (ActionEvent e) -> {
             JButton b = (JButton)e.getSource();
             firststdigitalvalueColor = b.getBackground();
             fButton = b.getText();
-            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
+            if (check.equals("4")) {
+                System.out.println("e");
+                result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton), fdButton);
+            } else {
+                result = check(Double.valueOf(fButton) * 100 + Double.valueOf(sButton) * 10 + Double.valueOf(extraButton), fdButton);
+            }
             repaint();
         };
 
@@ -150,7 +105,25 @@ public class Panel extends JPanel {
             JButton b = (JButton)e.getSource();
             seconddigitalvalueColor = b.getBackground();
             sButton = b.getText();
-            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
+            if (check.equals("4")) {
+                System.out.println("e");
+                result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton), fdButton);
+            } else {
+                result = check(Double.valueOf(fButton) * 100 + Double.valueOf(sButton) * 10 + Double.valueOf(extraButton), fdButton);
+            }
+            repaint();
+        };
+
+        ActionListener thirdL = (ActionEvent e) -> {
+            JButton b = (JButton)e.getSource();
+            thirdgitalvalueColor = b.getBackground();
+            extraButton = b.getText();
+            if (check.equals("4")) {
+                System.out.println("e");
+                result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton), fdButton);
+            } else {
+                result = check(Double.valueOf(fButton) * 100 + Double.valueOf(sButton) * 10 + Double.valueOf(extraButton), fdButton);
+            }
             repaint();
         };
 
@@ -158,7 +131,12 @@ public class Panel extends JPanel {
             JButton b = (JButton)e.getSource();
             decimalfactorColor = b.getBackground();
             fdButton = b.getText();
-            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton),fdButton);
+            if (check.equals("4")) {
+                System.out.println("e");
+                result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton), fdButton);
+            } else {
+                result = check(Double.valueOf(fButton) * 100 + Double.valueOf(sButton) * 10 + Double.valueOf(extraButton), fdButton);
+            }
             repaint();
         };
 
@@ -169,10 +147,64 @@ public class Panel extends JPanel {
             repaint();
         };
 
+        ActionListener switch4 = (ActionEvent e) -> {
+            check = "4";
+            result = check(Double.valueOf(fButton) * 10 + Double.valueOf(sButton), fdButton);
+            JButton b = (JButton)e.getSource();
+            width = 180;
+            for (int i = 0; i < firststdigitalvalue.length; i++){
+                remove(firststdigitalvalue[i]);
+                remove(seconddigitalvalue[i]);
+                remove(decimalfactor[i]);
+                remove(thirddigitalvalue[i]);
+                remove(tolerance[i]);
+            }
+
+            values(firststdigitalvalue, 215);
+            values(seconddigitalvalue,410);
+            decimalfactor(605);
+            tolerance(800);
+
+            for (JButton d: firststdigitalvalue) { d.addActionListener(firstL); }
+            for (JButton d: seconddigitalvalue) { d.addActionListener(secondL); }
+            for (JButton d: thirddigitalvalue) { d.addActionListener(firdL); }
+            for (JButton d: decimalfactor) { d.addActionListener(firdL); }
+            for (JButton d: tolerance) { d.addActionListener(fourthL); }
+            repaint();
+        };
+
+        ActionListener switch5 = (ActionEvent e) -> {
+            check = "5";
+            result = check(Double.valueOf(fButton) * 100 + Double.valueOf(sButton) * 10 + Double.valueOf(extraButton), fdButton);
+            JButton b = (JButton)e.getSource();
+            width = 120;
+            for (int i = 0; i < firststdigitalvalue.length; i++){
+                remove(firststdigitalvalue[i]);
+                remove(seconddigitalvalue[i]);
+                remove(decimalfactor[i]);
+                remove(tolerance[i]);
+            }
+            values(firststdigitalvalue, 200);
+            values(seconddigitalvalue,340);
+            values(thirddigitalvalue, 480);
+            decimalfactor(620);
+            tolerance(760);
+
+            for (JButton d: firststdigitalvalue) { d.addActionListener(firstL); }
+            for (JButton d: seconddigitalvalue) { d.addActionListener(secondL); }
+            for (JButton d: thirddigitalvalue) { d.addActionListener(thirdL); }
+            for (JButton d: decimalfactor) { d.addActionListener(firdL); }
+            for (JButton d: tolerance) { d.addActionListener(fourthL); }
+            repaint();
+        };
+
         for (JButton b: firststdigitalvalue) { b.addActionListener(firstL); }
         for (JButton b: seconddigitalvalue) { b.addActionListener(secondL); }
+        for (JButton b: thirddigitalvalue) { b.addActionListener(thirdL); }
         for (JButton b: decimalfactor) { b.addActionListener(firdL); }
         for (JButton b: tolerance) { b.addActionListener(fourthL); }
+        fourRings.addActionListener(switch4);
+        fiveRings.addActionListener(switch5);
     }
 
     public String check(double value, String decimalfactor){
@@ -203,6 +235,73 @@ public class Panel extends JPanel {
         } else  if (buttonString.equals("fhButton")) {
             fhButton = list[randomNumber].getText();
             toleranceColor = list[randomNumber].getBackground();
+        } else if (buttonString.equals("extraButton")) {
+            extraButton = list[2].getText();
+            toleranceColor = list[2].getBackground();
         }
     }
+
+    public void values(JButton[] jButtons, int xValue){
+        for (int x = 0; x < 12; x++){
+            jButtons[x] = new JButton((x-2) + "");
+            if (x < 2) {
+                jButtons[x] = new JButton( "-");
+                jButtons[x].setEnabled(false);
+            }
+            jButtons[x].setBounds(xValue,x * 37 + 407,width,35);
+            jButtons[x].setFont(font);
+            jButtons[x].setBackground(colors[x]);
+            if (x == 0 || x == 1) {
+                jButtons[x].setBackground(colors[11]);
+            }
+            add(jButtons[x]);
+        }
+    }
+
+    public void decimalfactor(int xValue){
+        for (int x = 0; x < 12; x++){
+            if (x == 0) { decimalfactor[x] = new JButton("÷100");}
+            else if (x == 1) { decimalfactor[x] = new JButton("÷10"); }
+            else if (x == 2) { decimalfactor[x] = new JButton("x1"); }
+            else if (x == 3) { decimalfactor[x] = new JButton("x10"); }
+            else if (x == 4) { decimalfactor[x] = new JButton("x100"); }
+            else if (x == 5) { decimalfactor[x] = new JButton("x1K"); }
+            else if (x == 6) { decimalfactor[x] = new JButton("x10K"); }
+            else if (x == 7) { decimalfactor[x] = new JButton("x100K"); }
+            else if (x == 8) { decimalfactor[x] = new JButton("x1M"); }
+            else if (x == 9) { decimalfactor[x] = new JButton("x10M"); }
+            else if (x == 10) { decimalfactor[x] = new JButton("x100M"); }
+            else if (x == 11) { decimalfactor[x] = new JButton("x1G"); }
+            decimalfactor[x].setBounds(xValue,x *37 + 407,width,35);
+            decimalfactor[x].setFont(font);
+            decimalfactor[x].setBackground(colors[x]);
+            add(decimalfactor[x]);
+        }
+    }
+
+    public void tolerance(int xValue){
+        for (int x = 0; x < 12; x++){
+            if (x == 0) { tolerance[x] = new JButton("±10%");}
+            else if (x == 1) { tolerance[x] = new JButton("±5%");}
+            else if (x == 2) { tolerance[x] = new JButton("-");tolerance[x].setEnabled(false);}
+            else if (x == 3) { tolerance[x] = new JButton("±1%");}
+            else if (x == 4) { tolerance[x] = new JButton("±2%");}
+            else if (x == 5) { tolerance[x] = new JButton("-");tolerance[x].setEnabled(false);}
+            else if (x == 6) { tolerance[x] = new JButton("-");tolerance[x].setEnabled(false);}
+            else if (x == 7) { tolerance[x] = new JButton("±0.5%");}
+            else if (x == 8) { tolerance[x] = new JButton("±0.25%");}
+            else if (x == 9) { tolerance[x] = new JButton("±0.10%");}
+            else if (x == 10) { tolerance[x] = new JButton("±0.05%");}
+            else if (x == 11) { tolerance[x] = new JButton("-"); tolerance[x].setBackground(Color.white); tolerance[x].setEnabled(false);}
+
+            tolerance[x].setBounds(xValue,x *37 + 407,width,35);
+            tolerance[x].setFont(font);
+            tolerance[x].setBackground(colors[x]);
+            if (x == 2 || x == 5 || x == 6 || x == 11) {
+                tolerance[x].setBackground(colors[11]);
+            }
+            add(tolerance[x]);
+        }
+    }
+
 }
