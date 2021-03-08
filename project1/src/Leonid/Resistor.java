@@ -44,62 +44,46 @@ abstract class ResistorsConfig {
 }
 
 class Resistor extends ResistorsConfig {
-    protected String line1, line2, line3, line4, line5;
-    private final int lines;
+    public double num1, num2, num3, multiplier, tolerance;
 
     public Resistor(String line1, String line2, String line3) {
-        this.line1 = line1;
-        this.line2 = line2;
-        this.line3 = line3;
-        this.lines = 3;
+        num1 = 0.0;
+        num2 = valuesRes.get(line1);
+        num3 = valuesRes.get(line2);
+        multiplier = multipliersRes.get(line3);
+        tolerance = 0.0;
     }
 
     public Resistor(String line1, String line2, String line3, String line4) {
-        this.line1 = line1;
-        this.line2 = line2;
-        this.line3 = line3;
-        this.line4 = line4;
-        this.lines = 4;
+        num1 = valuesRes.get(line1);
+        num2 = valuesRes.get(line2);
+        num3 = valuesRes.get(line3);
+        multiplier = multipliersRes.get(line4);
+        tolerance = 0.0;
     }
 
     public Resistor(String line1, String line2, String line3, String line4, String line5, String... args) {
-        this.line1 = line1;
-        this.line2 = line2;
-        this.line3 = line3;
-        this.line4 = line4;
-        this.line5 = line5;
-        this.lines = 5;
+        num1 = valuesRes.get(line1);
+        num2 = valuesRes.get(line2);
+        num3 = valuesRes.get(line3);
+        multiplier = multipliersRes.get(line4);
+        tolerance = tolerancesRes.get(line5);
     }
 
     public double getResistance() {
-        double resistance;
-        if (lines == 3) {
-            resistance = (valuesRes.get(line1) * 10 + valuesRes.get(line2)) * multipliersRes.get(line3);
-            return resistance;
-        } else if (lines == 4) {
-            resistance = (valuesRes.get(line1) * 10 + valuesRes.get(line2)) * multipliersRes.get(line3);
-            return resistance;
-        } else if (lines == 5) {
-            resistance = (valuesRes.get(line1) * 100 + valuesRes.get(line2) * 10 + valuesRes.get(line3)) * multipliersRes.get(line4);
-            return resistance;
-        }
-        return 0.0;
+        return (num1 * 100 + num2 * 10 + num3) * multiplier;
     }
 
-    public String getTolerance() {
-        String tolerance;
-        if (lines == 4) {
-            tolerance = "+/- " + tolerancesRes.get(line4) + "%";
-            return tolerance;
-        } else if (lines == 5) {
-            tolerance = "+/- " + tolerancesRes.get(line5) + "%";
-            return tolerance;
-        }
-        return "N/A";
+    public double getTolerance() {
+        return tolerance;
     }
 
     @Override
     public String toString() {
-        return getResistance() + " Ohm. Tolerance: " + getTolerance();
+        if (tolerance != 0.0) {
+            return getResistance() + " Oom +/- " + getTolerance() + " %";
+        } else {
+            return getResistance() + " Oom";
+        }
     }
 }

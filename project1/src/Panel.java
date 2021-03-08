@@ -51,7 +51,7 @@ public class Panel extends JPanel {
     }
 
     public Panel(){
-        JLabel imgLabel = new JLabel(new ImageIcon("C:\\Users\\Aleksandr_Viktoriya\\Desktop\\OOP_2021\\project1\\Six-Band-Resistor-Color-Code.png"));
+        JLabel imgLabel = new JLabel(new ImageIcon("Six-Band-Resistor-Color-Code.png"));
         imgLabel.setBounds(150,70,800,400);
         add(imgLabel);
 
