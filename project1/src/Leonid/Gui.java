@@ -12,13 +12,13 @@ class MyFrame extends JFrame implements ActionListener {
     MyLabelImage imageLabel;
     MyPanel panel1, panel2, panel3, panel4, panel5;
     MyComboBox combobox1, combobox2, combobox3, combobox4, combobox5;
+
     public static final String[] valuesString =
             {"none", "black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"};
     public static final String[] multipliersString =
             {"none", "black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white", "silver", "gold"};
     public static final String[] tolerancesString =
-            {"none", "black", "brown","green", "blue", "violet", "gray", "silver", "gold"};
-
+            {"none", "black", "brown", "green", "blue", "violet", "gray", "silver", "gold"};
 
     MyFrame() {
         this.setTitle("Resistance Calculator");
@@ -33,7 +33,6 @@ class MyFrame extends JFrame implements ActionListener {
         layeredPane.setBounds(0, 0, 640, 400);
         this.add(layeredPane);
 
-        String[] test = {"BLACK", "BROWN", "VIOLET", "YELLOW"};
         button = new MyButton(450, 297);
         combobox1 = new MyComboBox(70, 230, valuesString);
         combobox2 = new MyComboBox(170, 230, valuesString);
@@ -77,7 +76,7 @@ class MyFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
-            ArrayList<String> colors = new ArrayList<String>();
+            ArrayList<String> colors = new ArrayList<>();
             colors.add(panel1.getColor());
             colors.add(panel2.getColor());
             colors.add(panel3.getColor());
@@ -107,7 +106,7 @@ class MyFrame extends JFrame implements ActionListener {
 }
 
 class MyPanel extends JPanel {
-    public static final HashMap<String, Color> valuesColors = new HashMap<String, Color>() {{
+    public static final HashMap<String, Color> valuesColors = new HashMap<>() {{
         put("black", new Color(0x0));
         put("brown", new Color(0x8B4513));
         put("red", new Color(0xD51414));

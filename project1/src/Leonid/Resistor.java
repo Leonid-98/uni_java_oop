@@ -3,7 +3,7 @@ package Leonid;
 import java.util.HashMap;
 
 abstract class ResistorsConfig {
-    public static final HashMap<String, Double> valuesRes = new HashMap<String, Double>() {{
+    protected final HashMap<String, Double> valuesRes = new HashMap<>() {{
         put("black", 0.0);
         put("brown", 1.0);
         put("red", 2.0);
@@ -16,7 +16,7 @@ abstract class ResistorsConfig {
         put("white", 9.0);
     }};
 
-    public static final HashMap<String, Double> multipliersRes = new HashMap<String, Double>() {{
+    protected final HashMap<String, Double> multipliersRes = new HashMap<>() {{
         put("silver", 0.01);
         put("gold", 0.1);
         put("black", 1.0);
@@ -31,11 +31,11 @@ abstract class ResistorsConfig {
         put("white", 1_000_000_000.0);
     }};
 
-    public static final HashMap<String, Double> tolerancesRes = new HashMap<String, Double>() {{
+    protected final HashMap<String, Double> tolerancesRes = new HashMap<>() {{
         put("silver", 10.0);
         put("gold", 5.0);
-        put("black", 1.0);
-        put("brown", 2.0);
+        put("brown", 1.0);
+        put("red", 2.0);
         put("green", 0.5);
         put("blue", 0.25);
         put("violet", 0.1);
@@ -44,9 +44,9 @@ abstract class ResistorsConfig {
 }
 
 class Resistor extends ResistorsConfig {
-    public double num1, num2, num3, multiplier, tolerance;
+    private final double num1, num2, num3, multiplier, tolerance;
 
-    public Resistor(String line1, String line2, String line3) {
+    protected Resistor(String line1, String line2, String line3) {
         num1 = 0.0;
         num2 = valuesRes.get(line1);
         num3 = valuesRes.get(line2);
@@ -54,15 +54,15 @@ class Resistor extends ResistorsConfig {
         tolerance = 0.0;
     }
 
-    public Resistor(String line1, String line2, String line3, String line4) {
-        num1 = valuesRes.get(line1);
-        num2 = valuesRes.get(line2);
-        num3 = valuesRes.get(line3);
-        multiplier = multipliersRes.get(line4);
-        tolerance = 0.0;
+    protected Resistor(String line1, String line2, String line3, String line4) {
+        num1 = 0.0;
+        num2 = valuesRes.get(line1);
+        num3 = valuesRes.get(line2);
+        multiplier = multipliersRes.get(line3);
+        tolerance = tolerancesRes.get(line4);
     }
 
-    public Resistor(String line1, String line2, String line3, String line4, String line5, String... args) {
+    protected Resistor(String line1, String line2, String line3, String line4, String line5) {
         num1 = valuesRes.get(line1);
         num2 = valuesRes.get(line2);
         num3 = valuesRes.get(line3);
