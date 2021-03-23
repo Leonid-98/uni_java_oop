@@ -76,31 +76,32 @@ class MyFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
-            ArrayList<String> colors = new ArrayList<>();
-            colors.add(panel1.getColor());
-            colors.add(panel2.getColor());
-            colors.add(panel3.getColor());
-            colors.add(panel4.getColor());
-            colors.add(panel5.getColor());
+            ArrayList<String> colors = new ArrayList<>() {{
+                add(panel1.getColor());
+                add(panel2.getColor());
+                add(panel3.getColor());
+                add(panel4.getColor());
+                add(panel5.getColor());
+            }};
 
-            while (colors.contains("none")) {
+            while (colors.contains("none"))
                 colors.remove("none");
-            }
 
-            String text;
-            if (colors.size() == 3) {
-                Resistor resistor = new Resistor(colors.get(0), colors.get(1), colors.get(2));
-                text = resistor.toString();
-            } else if (colors.size() == 4) {
-                Resistor resistor = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3));
-                text = resistor.toString();
-            } else if (colors.size() == 5) {
-                Resistor resistor = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3), colors.get(4));
-                text = resistor.toString();
-            } else {
-                text = "Unable to calculate.";
+            switch (colors.size()) {
+                case 3 -> {
+                    Resistor resistor3 = new Resistor(colors.get(0), colors.get(1), colors.get(2));
+                    textLabel.setText(resistor3.toString());
+                }
+                case 4 -> {
+                    Resistor resistor4 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3));
+                    textLabel.setText(resistor4.toString());
+                }
+                case 5 -> {
+                    Resistor resistor5 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3), colors.get(4));
+                    textLabel.setText(resistor5.toString());
+                }
+                default -> textLabel.setText("Unable to calculate.");
             }
-            textLabel.setText(text);
         }
     }
 }
