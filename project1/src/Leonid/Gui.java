@@ -13,6 +13,7 @@ class MyFrame extends JFrame implements ActionListener {
     MyPanel panel1, panel2, panel3, panel4, panel5;
     MyComboBox combobox1, combobox2, combobox3, combobox4, combobox5;
 
+    // See on text, mis läheb ComboBox'ile
     public static final String[] valuesString =
             {"none", "black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "gray", "white"};
     public static final String[] multipliersString =
@@ -48,6 +49,7 @@ class MyFrame extends JFrame implements ActionListener {
         panel4 = new MyPanel(302, 25);
         panel5 = new MyPanel(418, 25);
 
+        // Selleks, et värvi panelid oleksid all, ja teised elemendid - üleval
         layeredPane.add(imageLabel, JLayeredPane.DRAG_LAYER);
         layeredPane.add(infoLabel, JLayeredPane.DRAG_LAYER);
         layeredPane.add(button, JLayeredPane.DRAG_LAYER);
@@ -69,7 +71,6 @@ class MyFrame extends JFrame implements ActionListener {
         combobox3.addActionListener(e -> panel3.setColor(combobox3));
         combobox4.addActionListener(e -> panel4.setColor(combobox4));
         combobox5.addActionListener(e -> panel5.setColor(combobox5));
-
         this.setLayout(null);
     }
 

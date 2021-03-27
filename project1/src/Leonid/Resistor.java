@@ -1,8 +1,8 @@
 package Leonid;
-
 import java.util.HashMap;
 
-abstract class ResistorsConfig {
+
+class Resistor {
     protected final HashMap<String, Double> valuesRes = new HashMap<>() {{
         put("black", 0.0);
         put("brown", 1.0);
@@ -41,9 +41,6 @@ abstract class ResistorsConfig {
         put("violet", 0.1);
         put("gray", 0.05);
     }};
-}
-
-class Resistor extends ResistorsConfig {
     private final double num1, num2, num3, multiplier, tolerance;
 
     protected Resistor(String line1, String line2, String line3) {

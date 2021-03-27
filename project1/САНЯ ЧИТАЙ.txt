@@ -1,0 +1,75 @@
+// Как прочитайешь, сотри эту строку, я ебанул небольшой readme, добавь чуток, если не впадлу.
+// Крч в мудле чекни рюхматее, там написано, что сюда писать, я почтим все записал
+
+
+
+Leonid Tšigrinski ja Alexander Titov
+Resistori sisetakistuse arvutus värvi järgi.
+
+Sissejuhatus:
+Eeldame, et kasutaja teab, mis resistor üldiselt on. Igal resistoril on oma 
+takistus, mis sõltub tema materjalist, pikkusest ja diametrisest. 
+Selleks, et mugavaks need eristada, tootajad markerivad need värviga. 
+Iga värvi riba tähendab midagi. 
+
+On olemas neli tüüpi: 3, 4, 5 ja 6 ribane markering. 
+Kui on kolm, siis esimesed kaks ribad on numbrid, kolmas on kordaja.
+Kui on neli, siis esimesed kolm on sama, vaid neljas on mõttemääramatus (sõltub lihtsalt kvaliteetist)
+Kui on viis, siis esimesed kolm ribad on juba numbrid, nejas on kordaja, viies mõttemääramatus (tolerantsus) 
+Kuue ribase puhul, kuues on temperaturi tegur, aga sellist väga palju ei kasuta.
+
+Rühmatöö käigus.
+Kasutasime java swing ning proovisime teha kaks erinevad versioonid. Üks kompaktne versioon (Leonidi oma) 
+ja teine suurem versioon (Aleksandri oma). Esimene versiion on pigem kiirarvutuse jaoks, kuid
+teien õpimise jaoks. Et inimene, kes ei ole kogenud, saaks aru, mis ülde need ribad tähendavad. 
+Hektkel, need verioonid on kaks erinevad programmid. Tulemus plaanis meil on need kokku panna, lisada
+paar füüsikalisi kasukillu kalkulaatorid veel (nt rööbiti resistorite takistus või mingi elektriahela teoreme seotud)
+et teha suur kasulik programm. Aga, hektel, isegi need kaks programmid on valmis, et aidata kõigile, kes tahab
+päriselt need kasutada.
+
+
+----------------------
+Leonidi töö kirjeldus:
+
+On klassid Main (seal lihtsalt panen programm käika), Gui ja Resistor.
+
+///// https://sisu.ut.ee/elektroonika/28-takistite-v%C3%A4rvikoodid
+Resistor kalss loob Resistor objekti. Konstruktorid kirjeldavad, mis värvid 
+mida tähendavad (nagu ülaspool mainitud). Selleks, et määrata arvud, kasutan HashMap, 
+kus on paar (String värv , double arv). 
+Konstruktor võtab vastu String argumentid, 
+ja ise teisendab need numbriks. Edaspidi meil on vaja ainult üks 
+meetod sellest klassis -- toSting(). Üldiselt, kõik väljad on privaatsed. 
+Soovi korral saab kätte ainult juba kalkuleeritud takistus ja tolerantsus (vastavat meetodiga). 
+toString() meetod kastuabki need.
+
+Gui kasutab järgmised klassid: MyFrame, MyPanel, MyLabelImage, MyLabeltext, MyButton ja MyComboBox,
+nad on kõik child klassid vastavalt oma nimele (MyFrame <= JFrame, MyButton <= JButton jne.)
+Tegin nii paju muudatusi selleks et: 
+1) Saaks mugavalt muuta nende stüül klassi sees
+2) Saaks mugavalt muuta nende asukoht kontruktori parametris
+3) Ei oleks PeaFrame'il kirjutatud koodi unnik erinevate nuppuga ja teise elemendiga, kus on lihtsalt palju stiliseerimist
+Kasutasind mõnel kalssil HashMappid, et mugavalt määrata vastav väärtus (nt MyPanelis on iga Stringi värv jaoks on vastav Color objekt)
+
+Hektel, MyFrame'il on järgmine struktuur -
+Frame peal on LayeredPane. Ja juba Pane peale panen kõik elemendid. See on selleks, et määrata elemedtide kiht.
+See on oluline et meil one PNG pilt resistoritega ilma ribadeta (ribade asemel on tyhik). Sinna alla lisan 5 Panelid.
+Vaikimisi, panelid on sama värviga, nagu resistori pilt (pruun) (kujutame ette, et resistor ilma ribata)
+Button ja ComboBox realiseerivad ActionListener liides. 
+Buttoni jaoks on oma actionPerformed meetod. Kui vajutame nuppu, kogume listi kõik ComboBoxi sõned, võtame sealt kõik "none" maha ja loome Resistori objekt, 
+vahetame MyLabelText tekst (vaikimisi lihtsalt ""), kasutades Resistori toString() meetod. Samas, programm kontrollib, kas saab üldse objektri luua.
+Kui vajutame ComboBoxi värv, vahetame Paneli vastavalt combobox'ile värv. Seal kasutan lambda funktsiooni (Paneli oma meetod setColor()). See on lihtsalt mugavam.
+Lisaks, seal on MyLabelText, see on abiteks (iga comboboxi all).
+
+Programm töötab korralikult arvutuses mõttes. Meeldis, et sain hästi palju uued oskused, nagu java swing, lambda funktsioonid või toppelt {{}} kastuamine.
+Minusest minu poolt on see, et combobox on staatiline. Ehk, mis programm teeb, ta lihtsalt võtab järjest comboboksi värvid (stringid). Kui loome resistor nt kasutades 
+viimased kolm komboboksid, neende valikud mõelnud mitte numbri jaoks. Ja kui paneme nt Silver Gold Silver, siis kontruktor ikka toimub. Klass loodut, aga loomisel
+ta ei leia oma HashMappis silveri jaoks vastav väärtus, et ta otsib hashmapis numbri jaoks, aga meie paneme värv mis mõelnud tolerantsuse määramiseks. Lahenduseks ongi selle väike tekst ComboBoxi all.
+
+Sain tehtud umbes 6-10 tunniga.
+
+-----------------------
+Aleksandri töö kirjeldus:
+
+
+
