@@ -5,7 +5,7 @@ public class Start {
     private JFrame window;
 
     public Start(){
-        window = new JFrame("test");
+        window = new JFrame("Calculator");
         window.setSize(1015,900);
         window.add(new Panel());
         window.setLocationRelativeTo(null);

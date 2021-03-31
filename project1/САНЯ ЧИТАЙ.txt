@@ -71,5 +71,24 @@ Sain tehtud umbes 6-10 tunniga.
 -----------------------
 Aleksandri töö kirjeldus:
 
+On klassid Start ja Panel.
+
+Klassis Start luuakse Jframe ja määratakse selle sätted, samuti käivitatakse selles klassis programm.
+
+Kõik objektid luuakse klassis Paneel, mis seejärel paigutatakse Jframe'i.
+Funktsioon paintComponent kuvab värvide nimed, kalkulaatori abil saadud tulemuse ja kuvab ka takisti värvid mis oli valitud.
+Funktsioon Paneel kuvab ekraanil takisti pildi, samuti values, decimalfactor ja tolerance funktsioonide abil kuvab ekraanil kõik vajalikud nupud. Kõigi nuppude värvid on samuti määratud.
+Funktsioon Appereance vastutab selle eest, et programmi esmakordsel käivitamisel valib kalkulaator ise juhuslikud väärtused ja näitab tulemust.
+Check funktsioon kontrollib valitud nuppude väärtusi ja kuvab tulemuse ekraanil.
+Samuti on viis ActionListeneri, mis võtavad argumendina nuppude loendi ja muudavad kuvatavat tulemust sõltuvalt vajutatud nupust.
+Samuti on olemas nupp, mis lisab takisti jaoks veel ühe väärtuse veeru ja ActionListener, mis töötleb selle väärtusi ja väljunditulemust.
+
+Gui kasutab järgmised klassid: MyFrame, MyPanel, MyLabelImage, MyLabeltext, MyButton.
+
+Programm töötab hästi, mulle meeldib kujundus ja disain.Ьiinustest võib märkida, et kood osutus üsna tülikaks ja seda sai paremini optimeeridaю
+
+Sain tehtud umbes 6-10 tunniga.
+
+
 
 
