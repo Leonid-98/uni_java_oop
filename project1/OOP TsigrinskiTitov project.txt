@@ -1,8 +1,3 @@
-// Как прочитайешь, сотри эту строку, я ебанул небольшой readme, добавь чуток, если не впадлу.
-// Крч в мудле чекни рюхматее, там написано, что сюда писать, я почтим все записал
-
-
-
 Leonid Tšigrinski ja Alexander Titov
 Resistori sisetakistuse arvutus värvi järgi.
 
