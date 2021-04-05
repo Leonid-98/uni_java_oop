@@ -26,23 +26,20 @@ päriselt need kasutada.
 ----------------------
 Leonidi töö kirjeldus:
 
-On klassid Main (seal lihtsalt panen programm käika), Gui ja Resistor.
+On klassid Main, Gui ja Resistor.
 
-///// https://sisu.ut.ee/elektroonika/28-takistite-v%C3%A4rvikoodid
 Resistor kalss loob Resistor objekti. Konstruktorid kirjeldavad, mis värvid 
 mida tähendavad (nagu ülaspool mainitud). Selleks, et määrata arvud, kasutan HashMap, 
 kus on paar (String värv , double arv). 
 Konstruktor võtab vastu String argumentid, 
 ja ise teisendab need numbriks. Edaspidi meil on vaja ainult üks 
-meetod sellest klassis -- toSting(). Üldiselt, kõik väljad on privaatsed. 
-Soovi korral saab kätte ainult juba kalkuleeritud takistus ja tolerantsus (vastavat meetodiga). 
-toString() meetod kastuabki need.
+meetod sellest klassis -- toSting().
 
 Gui kasutab järgmised klassid: MyFrame, MyPanel, MyLabelImage, MyLabeltext, MyButton ja MyComboBox,
 nad on kõik child klassid vastavalt oma nimele (MyFrame <= JFrame, MyButton <= JButton jne.)
 Tegin nii paju muudatusi selleks et: 
 1) Saaks mugavalt muuta nende stüül klassi sees
-2) Saaks mugavalt muuta nende asukoht kontruktori parametris
+2) Saaks mugavalt muuta nende asukoht kontruktori parametrna
 3) Ei oleks PeaFrame'il kirjutatud koodi unnik erinevate nuppuga ja teise elemendiga, kus on lihtsalt palju stiliseerimist
 Kasutasind mõnel kalssil HashMappid, et mugavalt määrata vastav väärtus (nt MyPanelis on iga Stringi värv jaoks on vastav Color objekt)
 
@@ -57,9 +54,9 @@ Kui vajutame ComboBoxi värv, vahetame Paneli vastavalt combobox'ile värv. Seal
 Lisaks, seal on MyLabelText, see on abiteks (iga comboboxi all).
 
 Programm töötab korralikult arvutuses mõttes. Meeldis, et sain hästi palju uued oskused, nagu java swing, lambda funktsioonid või toppelt {{}} kastuamine.
-Minusest minu poolt on see, et combobox on staatiline. Ehk, mis programm teeb, ta lihtsalt võtab järjest comboboksi värvid (stringid). Kui loome resistor nt kasutades 
-viimased kolm komboboksid, neende valikud mõelnud mitte numbri jaoks. Ja kui paneme nt Silver Gold Silver, siis kontruktor ikka toimub. Klass loodut, aga loomisel
-ta ei leia oma HashMappis silveri jaoks vastav väärtus, et ta otsib hashmapis numbri jaoks, aga meie paneme värv mis mõelnud tolerantsuse määramiseks. Lahenduseks ongi selle väike tekst ComboBoxi all.
+Minusest minu poolt on see, et combobox'id on staatilised. Ehk, mis programm teeb, ta lihtsalt võtab järjest combobox'i värvid (stringid). Kui loome resistor nt kasutades 
+viimased kolm komboboksid, nende valikud mõelnud mitte numbri jaoks. Ja kui paneme nt Silver Gold Silver, siis kontruktor ikka toimub. Klass loodut, aga loomisel
+ta ei leia oma HashMappis silver'i ja gold'i jaoks vastav väärtus, sest meie panime värv mis mõelnud tolerantsuse määramiseks. Lahenduseks on väike abi tekst ComboBoxi all.
 
 Sain tehtud umbes 6-10 tunniga.
 

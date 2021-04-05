@@ -108,7 +108,7 @@ class MyFrame extends JFrame implements ActionListener {
 }
 
 class MyPanel extends JPanel {
-    public static final HashMap<String, Color> valuesColors = new HashMap<>() {{
+    private static final HashMap<String, Color> valuesColors = new HashMap<>() {{
         put("black", new Color(0x0));
         put("brown", new Color(0x8B4513));
         put("red", new Color(0xD51414));
