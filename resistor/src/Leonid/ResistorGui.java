@@ -6,12 +6,12 @@ import java.awt.event.*;
 import java.util.*;
 
 
-class MyFrame extends JFrame implements ActionListener {
-    MyButton button;
-    MyLabelText textLabel, infoLabel;
-    MyLabelImage imageLabel;
-    MyPanel panel1, panel2, panel3, panel4, panel5;
-    MyComboBox combobox1, combobox2, combobox3, combobox4, combobox5;
+class MyFrameRes extends JFrame implements ActionListener {
+    MyButtonRes button;
+    MyLabelTextRes textLabel, infoLabel;
+    MyLabelImageRes imageLabel;
+    MyPanelRes panel1, panel2, panel3, panel4, panel5;
+    MyComboBoxRes combobox1, combobox2, combobox3, combobox4, combobox5;
 
     // See on text, mis läheb ComboBox'ile
     public static final String[] valuesString =
@@ -21,7 +21,7 @@ class MyFrame extends JFrame implements ActionListener {
     public static final String[] tolerancesString =
             {"none", "black", "brown", "green", "blue", "violet", "gray", "silver", "gold"};
 
-    MyFrame() {
+    MyFrameRes() {
         this.setTitle("Resistance Calculator");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -34,20 +34,20 @@ class MyFrame extends JFrame implements ActionListener {
         layeredPane.setBounds(0, 0, 640, 400);
         this.add(layeredPane);
 
-        button = new MyButton(450, 297);
-        combobox1 = new MyComboBox(70, 230, valuesString);
-        combobox2 = new MyComboBox(170, 230, valuesString);
-        combobox3 = new MyComboBox(270, 230, valuesString);
-        combobox4 = new MyComboBox(370, 230, multipliersString);
-        combobox5 = new MyComboBox(470, 230, tolerancesString);
-        imageLabel = new MyLabelImage(15, 15);
-        textLabel = new MyLabelText(25, 290, 24, "");
-        infoLabel = new MyLabelText(65, 255, 16, " (1st Digit : 2nd Digit : 3th Digit : Multiplier : Tolerance)");
-        panel1 = new MyPanel(80, 25);
-        panel2 = new MyPanel(168, 25);
-        panel3 = new MyPanel(238, 25);
-        panel4 = new MyPanel(302, 25);
-        panel5 = new MyPanel(418, 25);
+        button = new MyButtonRes(450, 297);
+        combobox1 = new MyComboBoxRes(70, 230, valuesString);
+        combobox2 = new MyComboBoxRes(170, 230, valuesString);
+        combobox3 = new MyComboBoxRes(270, 230, valuesString);
+        combobox4 = new MyComboBoxRes(370, 230, multipliersString);
+        combobox5 = new MyComboBoxRes(470, 230, tolerancesString);
+        imageLabel = new MyLabelImageRes(15, 15);
+        textLabel = new MyLabelTextRes(25, 290, 24, "");
+        infoLabel = new MyLabelTextRes(65, 255, 16, " (1st Digit : 2nd Digit : 3th Digit : Multiplier : Tolerance)");
+        panel1 = new MyPanelRes(80, 25);
+        panel2 = new MyPanelRes(168, 25);
+        panel3 = new MyPanelRes(238, 25);
+        panel4 = new MyPanelRes(302, 25);
+        panel5 = new MyPanelRes(418, 25);
 
         // Selleks, et värvi panelid oleksid all, ja teised elemendid - üleval
         layeredPane.add(imageLabel, JLayeredPane.DRAG_LAYER);
@@ -107,7 +107,7 @@ class MyFrame extends JFrame implements ActionListener {
     }
 }
 
-class MyPanel extends JPanel {
+class MyPanelRes extends JPanel {
     private static final HashMap<String, Color> valuesColors = new HashMap<>() {{
         put("black", new Color(0x0));
         put("brown", new Color(0x8B4513));
@@ -125,13 +125,13 @@ class MyPanel extends JPanel {
     }};
     private String color;
 
-    MyPanel(int posx, int posy) {
+    MyPanelRes(int posx, int posy) {
         this.setBackground(new Color(0xc17b23));
         this.color = "none";
         this.setBounds(posx, posy, 60, 180);
     }
 
-    public void setColor(MyComboBox combobox) {
+    public void setColor(MyComboBoxRes combobox) {
         String x = (String) combobox.getSelectedItem();
         this.setBackground(valuesColors.get(x));
         this.color = x;
@@ -142,8 +142,8 @@ class MyPanel extends JPanel {
     }
 }
 
-class MyLabelImage extends JLabel {
-    MyLabelImage(int posx, int posy) {
+class MyLabelImageRes extends JLabel {
+    MyLabelImageRes(int posx, int posy) {
         ImageIcon image = new ImageIcon("Six-Band-Resistor-Color-Code.png");
         this.setIcon(image);
         this.setHorizontalTextPosition(JLabel.CENTER);
@@ -154,8 +154,8 @@ class MyLabelImage extends JLabel {
     }
 }
 
-class MyLabelText extends JLabel {
-    MyLabelText(int posx, int posy, int size, String text) {
+class MyLabelTextRes extends JLabel {
+    MyLabelTextRes(int posx, int posy, int size, String text) {
         this.setText(text);
         this.setForeground(Color.black);
         this.setFont(new Font("Rubik", Font.PLAIN, size));
@@ -163,8 +163,8 @@ class MyLabelText extends JLabel {
     }
 }
 
-class MyButton extends JButton {
-    MyButton(int posx, int poxy) {
+class MyButtonRes extends JButton {
+    MyButtonRes(int posx, int poxy) {
         this.setText("GET RES");
         this.setBackground(new Color(0xFAFFA9));
         this.setFont(new Font("Rubik", Font.PLAIN, 20));
@@ -172,8 +172,8 @@ class MyButton extends JButton {
     }
 }
 
-class MyComboBox extends JComboBox {
-    MyComboBox(int posx, int posy, String[] array) {
+class MyComboBoxRes extends JComboBox {
+    MyComboBoxRes(int posx, int posy, String[] array) {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(array);
         this.setModel(model);
         this.setBounds(posx, posy, 95, 30);

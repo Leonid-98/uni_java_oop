@@ -5,9 +5,12 @@ import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
-        MyFrame frame = new MyFrame();
-        frame.setVisible(true);
-        openWebpage("https://sisu.ut.ee/elektroonika/28-takistite-v%C3%A4rvikoodid");
+//        MyFrameRes frame = new MyFrameRes();
+//        frame.setVisible(true);
+//        openWebpage("https://sisu.ut.ee/elektroonika/28-takistite-v%C3%A4rvikoodid");
+
+        MyFrameDY frame1 = new MyFrameDY();
+        frame1.setVisible(true);
     }
 
     public static void openWebpage(String urlString) {
