@@ -5,12 +5,12 @@ import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
-//        frameColorBand frame = new frameColorBand();
-//        frame.setVisible(true);
+//        ResistorGui frame1 = new ResistorGui();
+//        frame1.setVisible(true);
 //        openWebpage("https://sisu.ut.ee/elektroonika/28-takistite-v%C3%A4rvikoodid");
 
-        FrameDeltaY frame1 = new FrameDeltaY();
-        frame1.setVisible(true);
+        DeltaYGui frame2 = new DeltaYGui();
+        frame2.setVisible(true);
     }
 
     public static void openWebpage(String urlString) {

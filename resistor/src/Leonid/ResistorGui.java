@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-class FrameResistor extends JFrame implements ActionListener {
+public class ResistorGui extends JFrame implements ActionListener {
     MyButton button;
     MyLabelText textLabel, infoLabel;
     MyLabelImage imageLabel;
@@ -22,7 +22,7 @@ class FrameResistor extends JFrame implements ActionListener {
     public static final String[] tolerancesString =
             {"none", "black", "brown", "green", "blue", "violet", "gray", "silver", "gold"};
 
-    FrameResistor() {
+    ResistorGui() {
         this.setTitle("Resistance Calculator");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -76,8 +76,8 @@ class FrameResistor extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == button) {
+    public void actionPerformed(ActionEvent event) {
+        if (event.getSource() == button) {
             ArrayList<String> colors = new ArrayList<>() {{
                 add(panel1.getColor());
                 add(panel2.getColor());
@@ -89,20 +89,24 @@ class FrameResistor extends JFrame implements ActionListener {
             while (colors.contains("none"))
                 colors.remove("none");
 
-            switch (colors.size()) {
-                case 3 -> {
-                    Resistor resistor3 = new Resistor(colors.get(0), colors.get(1), colors.get(2));
-                    textLabel.setText(resistor3.toString());
+            try {
+                switch (colors.size()) {
+                    case 3 -> {
+                        Resistor resistor3 = new Resistor(colors.get(0), colors.get(1), colors.get(2));
+                        textLabel.setText(resistor3.toString());
+                    }
+                    case 4 -> {
+                        Resistor resistor4 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3));
+                        textLabel.setText(resistor4.toString());
+                    }
+                    case 5 -> {
+                        Resistor resistor5 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3), colors.get(4));
+                        textLabel.setText(resistor5.toString());
+                    }
+                    default -> textLabel.setText("Unable to calculate.");
                 }
-                case 4 -> {
-                    Resistor resistor4 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3));
-                    textLabel.setText(resistor4.toString());
-                }
-                case 5 -> {
-                    Resistor resistor5 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3), colors.get(4));
-                    textLabel.setText(resistor5.toString());
-                }
-                default -> textLabel.setText("Unable to calculate.");
+            } catch (NullPointerException e) {
+                textLabel.setText(e.getMessage());
             }
         }
     }

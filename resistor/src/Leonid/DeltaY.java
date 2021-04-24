@@ -5,10 +5,20 @@ public class DeltaY {
     private double r12, r23, r31;
 
     public DeltaY(double r1, double r2, double r3) {
+        r1 = setValue(r1);
+        r2 = setValue(r2);
+        r3 = setValue(r3);
+
         sum = r1 + r2 + r3;
         r12 = (r1 * r2) / sum;
         r23 = (r2 * r3) / sum;
         r31 = (r3 * r1) / sum;
+    }
+
+    public double setValue(double value) {
+        if (value < 0)
+            throw new IllegalArgumentException("Resistance can't be < 0");
+        return value;
     }
 
     public double getR12() {

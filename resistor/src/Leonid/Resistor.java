@@ -1,8 +1,9 @@
 package Leonid;
+
 import java.util.HashMap;
 
 
-class Resistor {
+public class Resistor {
     protected final HashMap<String, Double> valuesRes = new HashMap<>() {{
         put("black", 0.0);
         put("brown", 1.0);
@@ -45,26 +46,32 @@ class Resistor {
 
     protected Resistor(String line1, String line2, String line3) {
         num1 = 0.0;
-        num2 = valuesRes.get(line1);
-        num3 = valuesRes.get(line2);
-        multiplier = multipliersRes.get(line3);
+        num2 = setValue(line1, valuesRes);
+        num3 = setValue(line2, valuesRes);
+        multiplier = setValue(line3, multipliersRes);
         tolerance = 0.0;
     }
 
     protected Resistor(String line1, String line2, String line3, String line4) {
         num1 = 0.0;
-        num2 = valuesRes.get(line1);
-        num3 = valuesRes.get(line2);
-        multiplier = multipliersRes.get(line3);
-        tolerance = tolerancesRes.get(line4);
+        num2 = setValue(line1, valuesRes);
+        num3 = setValue(line2, valuesRes);
+        multiplier = setValue(line3, multipliersRes);
+        tolerance = setValue(line4, tolerancesRes);
     }
 
     protected Resistor(String line1, String line2, String line3, String line4, String line5) {
-        num1 = valuesRes.get(line1);
-        num2 = valuesRes.get(line2);
-        num3 = valuesRes.get(line3);
-        multiplier = multipliersRes.get(line4);
-        tolerance = tolerancesRes.get(line5);
+        num1 = setValue(line1, valuesRes);
+        num2 = setValue(line2, valuesRes);
+        num3 = setValue(line3, valuesRes);
+        multiplier = setValue(line4, multipliersRes);
+        tolerance = setValue(line5, tolerancesRes);
+    }
+
+    public double setValue(String key, HashMap<String, Double> dict) {
+        if (!dict.containsKey(key))
+            throw new NullPointerException("Use correct fields for values");
+        return dict.get(key);
     }
 
     public double getResistance() {

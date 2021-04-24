@@ -3,7 +3,7 @@ package Leonid;
 import javax.swing.*;
 import java.awt.*;
 
-class FrameDeltaY extends JFrame {
+public class DeltaYGui extends JFrame {
     MyButton button;
     MyLabelText output;
     MyTextField fieldR1, fieldR2, fieldR3;
@@ -11,8 +11,8 @@ class FrameDeltaY extends JFrame {
     MyLabelImage imageLabel;
     MyLabelText textR12, textR23, textR31;
 
-    FrameDeltaY() {
-        this.setTitle("DeltaY converter");
+    DeltaYGui() {
+        this.setTitle("Delta-to-Y calculator.");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1000, 500);
@@ -31,7 +31,7 @@ class FrameDeltaY extends JFrame {
         textR23 = new MyLabelText(680, 345, 30, "R23 =");
         textR31 = new MyLabelText(680, 385, 30, "R31 =");
         button = new MyButton(400, 305, "GET RES", 20);
-        output = new MyLabelText(400, 345, 30, "");
+        output = new MyLabelText(350, 345, 30, "");
 
         this.add(imageLabel);
         this.add(fieldR1);
@@ -52,17 +52,29 @@ class FrameDeltaY extends JFrame {
     }
 
     public void calculateRes() {
-        double r1 = Double.parseDouble(fieldR1.getText());
-        double r2 = Double.parseDouble(fieldR2.getText());
-        double r3 = Double.parseDouble(fieldR3.getText());
+        try {
+            output.setText("");
+            double r1 = Double.parseDouble(fieldR1.getText());
+            double r2 = Double.parseDouble(fieldR2.getText());
+            double r3 = Double.parseDouble(fieldR3.getText());
+            DeltaY rt = new DeltaY(r1, r2, r3);
+            textR12.setText("R12 = " + rt.getR12() + " Oom");
+            textR23.setText("R23 = " + rt.getR23() + " Oom");
+            textR31.setText("R31 = " + rt.getR31() + " Oom");
 
-
-        DeltaY rt = new DeltaY(r1, r2, r3);
-        textR12.setText("R12 = " + rt.getR12());
-        textR23.setText("R23 = " + rt.getR23());
-        textR31.setText("R31 = " + rt.getR31());
-
+        } catch (NumberFormatException e) {
+            if (e.getMessage().equals("empty String"))
+                output.setText("Empty field");
+            if (e.getMessage().contains("For input string")) {
+                output.setText("Input is not a number");
+            }
+        } catch (IllegalArgumentException e) {
+            output.setText(e.getMessage());
+        }
     }
+
+
 }
+
 
 
