@@ -5,11 +5,11 @@ import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
-//        MyFrameRes frame = new MyFrameRes();
+//        frameColorBand frame = new frameColorBand();
 //        frame.setVisible(true);
 //        openWebpage("https://sisu.ut.ee/elektroonika/28-takistite-v%C3%A4rvikoodid");
 
-        MyFrameDY frame1 = new MyFrameDY();
+        FrameDeltaY frame1 = new FrameDeltaY();
         frame1.setVisible(true);
     }
 

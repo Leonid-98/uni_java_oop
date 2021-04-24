@@ -83,4 +83,24 @@ Sain tehtud umbes 6-10 tunniga.
 
 
 
+##################################
+2. Rühmatöö. Arendamee edasi meie projekt. Lisame veel deltaY transfromation kalkulaatorja rööbiti ühenduse kalkulaator, veateade logid ja vea töötlus.
+
+Leonidi osa:
+Tegin delta-to-Y kalkulaator. Programm näitab ja kalkuleerib, kuidas kolmnurk ühendus saaks transfromerida.
+Esiteks, lisasin ..........
+потом дописать
+
+
+
+
+
+
+
+
+
+
+
+
+
 

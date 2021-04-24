@@ -1,10 +1,10 @@
 package Leonid;
 
-public class ResistorsTriangle {
+public class DeltaY {
     private double sum;
     private double r12, r23, r31;
 
-    public ResistorsTriangle(double r1, double r2, double r3) {
+    public DeltaY(double r1, double r2, double r3) {
         sum = r1 + r2 + r3;
         r12 = (r1 * r2) / sum;
         r23 = (r2 * r3) / sum;
