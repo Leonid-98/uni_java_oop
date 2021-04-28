@@ -4,7 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static Leonid.Main.logError;
 
 
 public class ResistorGui extends JFrame implements ActionListener {
@@ -28,7 +31,7 @@ public class ResistorGui extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setSize(640, 400);
         this.getContentPane().setBackground(new Color(0xEDFBC1));
-        ImageIcon icon = new ImageIcon("resistor.png");
+        ImageIcon icon = new ImageIcon("images/resistor.png");
         this.setIconImage(icon.getImage());
 
         JLayeredPane layeredPane = new JLayeredPane();
@@ -41,7 +44,7 @@ public class ResistorGui extends JFrame implements ActionListener {
         combobox3 = new MyComboBox(270, 230, valuesString);
         combobox4 = new MyComboBox(370, 230, multipliersString);
         combobox5 = new MyComboBox(470, 230, tolerancesString);
-        imageLabel = new MyLabelImage(15, 15, "Six-Band-Resistor-Color-Code.png", 594, 350);
+        imageLabel = new MyLabelImage(15, 15, "images/Six-Band-Resistor-Color-Code.png", 594, 350);
         textLabel = new MyLabelText(25, 290, 24, "");
         infoLabel = new MyLabelText(65, 255, 16, " (1st Digit : 2nd Digit : 3th Digit : Multiplier : Tolerance)");
         panel1 = new MyPanel(80, 25);
@@ -106,6 +109,7 @@ public class ResistorGui extends JFrame implements ActionListener {
                     default -> textLabel.setText("Unable to calculate.");
                 }
             } catch (NullPointerException e) {
+                logError(e.getMessage());
                 textLabel.setText(e.getMessage());
             }
         }

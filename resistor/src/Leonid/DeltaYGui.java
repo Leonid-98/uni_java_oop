@@ -3,6 +3,8 @@ package Leonid;
 import javax.swing.*;
 import java.awt.*;
 
+import static Leonid.Main.logError;
+
 public class DeltaYGui extends JFrame {
     MyButton button;
     MyLabelText output;
@@ -17,10 +19,10 @@ public class DeltaYGui extends JFrame {
         this.setResizable(false);
         this.setSize(1000, 500);
         this.getContentPane().setBackground(new Color(0xEDFBC1));
-        ImageIcon icon = new ImageIcon("resistor.png");
+        ImageIcon icon = new ImageIcon("images/resistor.png");
         this.setIconImage(icon.getImage());
 
-        imageLabel = new MyLabelImage(15, 15, "deltaY_small.png", 900, 274);
+        imageLabel = new MyLabelImage(15, 15, "images/deltaY_small.png", 900, 274);
         fieldR1 = new MyTextField(100, 310);
         fieldR2 = new MyTextField(100, 350);
         fieldR3 = new MyTextField(100, 390);
@@ -63,12 +65,14 @@ public class DeltaYGui extends JFrame {
             textR31.setText("R31 = " + rt.getR31() + " Oom");
 
         } catch (NumberFormatException e) {
+            logError(e.fillInStackTrace().toString()); // paju informatiivsem, kui setText teated
             if (e.getMessage().equals("empty String"))
                 output.setText("Empty field");
             if (e.getMessage().contains("For input string")) {
                 output.setText("Input is not a number");
             }
         } catch (IllegalArgumentException e) {
+            logError(e.fillInStackTrace().toString());
             output.setText(e.getMessage());
         }
     }
