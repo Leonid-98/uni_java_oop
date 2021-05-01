@@ -17,7 +17,7 @@ public class DeltaY {
 
     public double setValue(double value) {
         if (value < 0)
-            throw new IllegalArgumentException("Resistance can't be < 0");
+            throw new IllegalArgumentException(String.format("R (%.2f) can't be < 0", value));
         return value;
     }
 

@@ -65,7 +65,7 @@ public class DeltaYGui extends JFrame {
             textR31.setText("R31 = " + rt.getR31() + " Oom");
 
         } catch (NumberFormatException e) {
-            logError(e.fillInStackTrace().toString()); // paju informatiivsem, kui setText teated
+            logError(e.fillInStackTrace().toString());
             if (e.getMessage().equals("empty String"))
                 output.setText("Empty field");
             if (e.getMessage().contains("For input string")) {
