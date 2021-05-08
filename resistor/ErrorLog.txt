@@ -1,0 +1,4 @@
+[08.05.2021](17:51:59): Use correct fields for values
+[08.05.2021](17:53:27): java.lang.IllegalArgumentException: R (-1,00) can't be < 0
+[08.05.2021](17:53:29): java.lang.NumberFormatException: empty String
+[08.05.2021](17:53:31): java.lang.NumberFormatException: For input string: "asdas"

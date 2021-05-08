@@ -2,15 +2,12 @@ package Leonid;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static Leonid.Main.logError;
 
 
-public class ResistorGui extends JFrame implements ActionListener {
+public class ResistorGui extends JFrame {
     MyButton button;
     MyLabelText textLabel, infoLabel;
     MyLabelImage imageLabel;
@@ -33,12 +30,13 @@ public class ResistorGui extends JFrame implements ActionListener {
         this.getContentPane().setBackground(new Color(0xEDFBC1));
         ImageIcon icon = new ImageIcon("images/resistor.png");
         this.setIconImage(icon.getImage());
+        this.setLocationRelativeTo(null);
 
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBounds(0, 0, 640, 400);
         this.add(layeredPane);
 
-        button = new MyButton(450, 297, "GET RES", 20);
+        button = new MyButton(450, 297, "GET RES", 20, 127);
         combobox1 = new MyComboBox(70, 230, valuesString);
         combobox2 = new MyComboBox(170, 230, valuesString);
         combobox3 = new MyComboBox(270, 230, valuesString);
@@ -69,49 +67,47 @@ public class ResistorGui extends JFrame implements ActionListener {
         layeredPane.add(panel4, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(panel5, JLayeredPane.DEFAULT_LAYER);
 
-        button.addActionListener(this);
-        combobox1.addActionListener(e -> panel1.setColor(combobox1));
-        combobox2.addActionListener(e -> panel2.setColor(combobox2));
-        combobox3.addActionListener(e -> panel3.setColor(combobox3));
-        combobox4.addActionListener(e -> panel4.setColor(combobox4));
-        combobox5.addActionListener(e -> panel5.setColor(combobox5));
+        combobox1.addActionListener(event -> panel1.setColor(combobox1));
+        combobox2.addActionListener(event -> panel2.setColor(combobox2));
+        combobox3.addActionListener(event -> panel3.setColor(combobox3));
+        combobox4.addActionListener(event -> panel4.setColor(combobox4));
+        combobox5.addActionListener(event -> panel5.setColor(combobox5));
+        button.addActionListener(event -> calculateRes());
+
         this.setLayout(null);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        if (event.getSource() == button) {
-            ArrayList<String> colors = new ArrayList<>() {{
-                add(panel1.getColor());
-                add(panel2.getColor());
-                add(panel3.getColor());
-                add(panel4.getColor());
-                add(panel5.getColor());
-            }};
+    private void calculateRes() {
+        ArrayList<String> colors = new ArrayList<>() {{
+            add(panel1.getColor());
+            add(panel2.getColor());
+            add(panel3.getColor());
+            add(panel4.getColor());
+            add(panel5.getColor());
+        }};
 
-            while (colors.contains("none"))
-                colors.remove("none");
+        while (colors.contains("none"))
+            colors.remove("none");
 
-            try {
-                switch (colors.size()) {
-                    case 3 -> {
-                        Resistor resistor3 = new Resistor(colors.get(0), colors.get(1), colors.get(2));
-                        textLabel.setText(resistor3.toString());
-                    }
-                    case 4 -> {
-                        Resistor resistor4 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3));
-                        textLabel.setText(resistor4.toString());
-                    }
-                    case 5 -> {
-                        Resistor resistor5 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3), colors.get(4));
-                        textLabel.setText(resistor5.toString());
-                    }
-                    default -> textLabel.setText("Unable to calculate.");
+        try {
+            switch (colors.size()) {
+                case 3 -> {
+                    Resistor resistor3 = new Resistor(colors.get(0), colors.get(1), colors.get(2));
+                    textLabel.setText(resistor3.toString());
                 }
-            } catch (NullPointerException e) {
-                logError(e.getMessage());
-                textLabel.setText(e.getMessage());
+                case 4 -> {
+                    Resistor resistor4 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3));
+                    textLabel.setText(resistor4.toString());
+                }
+                case 5 -> {
+                    Resistor resistor5 = new Resistor(colors.get(0), colors.get(1), colors.get(2), colors.get(3), colors.get(4));
+                    textLabel.setText(resistor5.toString());
+                }
+                default -> textLabel.setText("Unable to calculate.");
             }
+        } catch (NullPointerException e) {
+            logError(e.getMessage());
+            textLabel.setText(e.getMessage());
         }
     }
 }

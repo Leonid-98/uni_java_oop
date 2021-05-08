@@ -26,11 +26,11 @@ class MyLabelImage extends JLabel {
 }
 
 class MyButton extends JButton {
-    MyButton(int posx, int poxy, String text, int size) {
+    MyButton(int posx, int poxy, String text, int size, int width) {
         this.setText(text);
         this.setBackground(new Color(0xFAFFA9));
         this.setFont(new Font("Rubik", Font.PLAIN, size));
-        this.setBounds(posx, poxy, 127, 33);
+        this.setBounds(posx, poxy, width, 33);
     }
 }
 

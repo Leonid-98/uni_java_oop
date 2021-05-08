@@ -21,6 +21,7 @@ public class DeltaYGui extends JFrame {
         this.getContentPane().setBackground(new Color(0xEDFBC1));
         ImageIcon icon = new ImageIcon("images/resistor.png");
         this.setIconImage(icon.getImage());
+        this.setLocationRelativeTo(null);
 
         imageLabel = new MyLabelImage(15, 15, "images/deltaY_small.png", 900, 274);
         fieldR1 = new MyTextField(100, 310);
@@ -32,7 +33,7 @@ public class DeltaYGui extends JFrame {
         textR12 = new MyLabelText(680, 305, 30, "R12 =");
         textR23 = new MyLabelText(680, 345, 30, "R23 =");
         textR31 = new MyLabelText(680, 385, 30, "R31 =");
-        button = new MyButton(400, 305, "GET RES", 20);
+        button = new MyButton(400, 305, "GET RES", 20, 127);
         output = new MyLabelText(350, 345, 30, "");
 
         this.add(imageLabel);
