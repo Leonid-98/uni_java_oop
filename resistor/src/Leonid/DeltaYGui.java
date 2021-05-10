@@ -24,17 +24,19 @@ public class DeltaYGui extends JFrame {
         this.setLocationRelativeTo(null);
 
         imageLabel = new MyLabelImage(15, 15, "images/deltaY_small.png", 900, 274);
-        fieldR1 = new MyTextField(100, 310);
-        fieldR2 = new MyTextField(100, 350);
-        fieldR3 = new MyTextField(100, 390);
-        textR1 = new MyLabelText(50, 305, 30, "R1              Oom"); // jah, mitte ilus
-        textR2 = new MyLabelText(50, 345, 30, "R2              Oom");
-        textR3 = new MyLabelText(50, 385, 30, "R3              Oom");
+        fieldR1 = new MyTextField(100, 310, 85, 30);
+        fieldR2 = new MyTextField(100, 350, 85, 30);
+        fieldR3 = new MyTextField(100, 390, 85, 30);
+        textR1 = new MyLabelText(50, 305, 30, "R1         \u03A9"); // Omega täht
+        textR2 = new MyLabelText(50, 345, 30, "R2         \u03A9");
+        textR3 = new MyLabelText(50, 385, 30, "R3         \u03A9");
         textR12 = new MyLabelText(680, 305, 30, "R12 =");
         textR23 = new MyLabelText(680, 345, 30, "R23 =");
         textR31 = new MyLabelText(680, 385, 30, "R31 =");
-        button = new MyButton(400, 305, "GET RES", 20, 127);
+        button = new MyButton(400, 305, "GET RES", 20, 127, 33);
         output = new MyLabelText(350, 345, 30, "");
+
+        button.addActionListener(e -> calculateRes());
 
         this.add(imageLabel);
         this.add(fieldR1);
@@ -49,8 +51,6 @@ public class DeltaYGui extends JFrame {
         this.add(button);
         this.add(output);
 
-        button.addActionListener(e -> calculateRes());
-
         this.setLayout(null);
     }
 
@@ -60,10 +60,10 @@ public class DeltaYGui extends JFrame {
             double r1 = Double.parseDouble(fieldR1.getText());
             double r2 = Double.parseDouble(fieldR2.getText());
             double r3 = Double.parseDouble(fieldR3.getText());
-            DeltaY rt = new DeltaY(r1, r2, r3);
-            textR12.setText("R12 = " + rt.getR12() + " Oom");
-            textR23.setText("R23 = " + rt.getR23() + " Oom");
-            textR31.setText("R31 = " + rt.getR31() + " Oom");
+            DeltaYLogic dY = new DeltaYLogic(r1, r2, r3);
+            textR12.setText("R12 = " + dY.getR12() + " \u03A9");
+            textR23.setText("R23 = " + dY.getR23() + " \u03A9");
+            textR31.setText("R31 = " + dY.getR31() + " \u03A9");
 
         } catch (NumberFormatException e) {
             logError(e.fillInStackTrace().toString());

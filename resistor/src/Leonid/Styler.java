@@ -8,7 +8,7 @@ class MyLabelText extends JLabel {
     MyLabelText(int posx, int posy, int size, String text) {
         this.setText(text);
         this.setForeground(Color.black);
-        this.setFont(new Font("Rubik", Font.PLAIN, size));
+        this.setFont(new Font("Verdana Italic", Font.PLAIN, size));
         this.setBounds(posx, posy, 500, 40);
     }
 }
@@ -26,11 +26,11 @@ class MyLabelImage extends JLabel {
 }
 
 class MyButton extends JButton {
-    MyButton(int posx, int poxy, String text, int size, int width) {
+    MyButton(int posx, int poxy, String text, int size, int width, int height) {
         this.setText(text);
         this.setBackground(new Color(0xFAFFA9));
         this.setFont(new Font("Rubik", Font.PLAIN, size));
-        this.setBounds(posx, poxy, width, 33);
+        this.setBounds(posx, poxy, width, height);
     }
 }
 
@@ -81,8 +81,8 @@ class MyPanel extends JPanel {
 }
 
 class MyTextField extends JTextField {
-    MyTextField(int posx, int posy) {
-        this.setBounds(posx, posy, 85, 30);
+    MyTextField(int posx, int posy, int width, int height) {
+        this.setBounds(posx, posy, width, height);
         this.setFont(new Font("Rubik", Font.PLAIN, 20));
         this.setBackground(new Color(0xFAFFA9));
     }

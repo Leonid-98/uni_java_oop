@@ -3,9 +3,10 @@ package Leonid;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
-    private MyButton button1, button2, button3, buttonFAQ1, buttonFAQ2;
-    public MainFrame() {
+public class MainWindowGui extends JFrame {
+    private MyButton button1, button2, button3, button4, buttonFAQ1, buttonFAQ2;
+
+    public MainWindowGui() {
         this.setTitle("Electrical calculator.");
         this.setResizable(false);
         this.setSize(535, 235);
@@ -14,19 +15,18 @@ public class MainFrame extends JFrame {
         this.setIconImage(icon.getImage());
         this.setLocationRelativeTo(null);
 
-        button1 = new MyButton(25, 25, "Detailed color band calculator", 20, 400);
+        button1 = new MyButton(25, 25, "Detailed color band calculator", 20, 400, 33);
+        button2 = new MyButton(25, 65, "Simple color band calculator", 20, 400, 33);
+        button3 = new MyButton(25, 105, "Delta-to-Y converter", 20, 400, 33);
+        button4 = new MyButton(25, 145, "Resistors in Parallel", 20, 400, 33);
+        buttonFAQ1 = new MyButton(450, 25, "?", 20, 45, 33);
+        buttonFAQ2 = new MyButton(450, 105, "?", 20, 45, 33);
+
         this.add(button1);
-
-        button2 = new MyButton(25, 65, "Simple color band calculator", 20, 400);
         this.add(button2);
-
-        button3 = new MyButton(25, 105, "Delta-to-Y converter", 20, 400);
         this.add(button3);
-
-        buttonFAQ1 = new MyButton(450, 25, "?", 20, 45);
+        this.add(button4);
         this.add(buttonFAQ1);
-
-        buttonFAQ2 = new MyButton(450, 105, "?", 20, 45);
         this.add(buttonFAQ2);
 
         this.setLayout(null);
@@ -42,6 +42,10 @@ public class MainFrame extends JFrame {
 
     public MyButton getButton3() {
         return button3;
+    }
+
+    public MyButton getButton4() {
+        return button4;
     }
 
     public MyButton getButtonFAQ1() {

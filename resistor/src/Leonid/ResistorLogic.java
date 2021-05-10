@@ -3,7 +3,7 @@ package Leonid;
 import java.util.HashMap;
 
 
-public class Resistor {
+public class ResistorLogic {
     protected final HashMap<String, Double> valuesRes = new HashMap<>() {{
         put("black", 0.0);
         put("brown", 1.0);
@@ -44,7 +44,7 @@ public class Resistor {
     }};
     private final double num1, num2, num3, multiplier, tolerance;
 
-    protected Resistor(String line1, String line2, String line3) {
+    protected ResistorLogic(String line1, String line2, String line3) {
         num1 = 0.0;
         num2 = setValue(line1, valuesRes);
         num3 = setValue(line2, valuesRes);
@@ -52,7 +52,7 @@ public class Resistor {
         tolerance = 0.0;
     }
 
-    protected Resistor(String line1, String line2, String line3, String line4) {
+    protected ResistorLogic(String line1, String line2, String line3, String line4) {
         num1 = 0.0;
         num2 = setValue(line1, valuesRes);
         num3 = setValue(line2, valuesRes);
@@ -60,7 +60,7 @@ public class Resistor {
         tolerance = setValue(line4, tolerancesRes);
     }
 
-    protected Resistor(String line1, String line2, String line3, String line4, String line5) {
+    protected ResistorLogic(String line1, String line2, String line3, String line4, String line5) {
         num1 = setValue(line1, valuesRes);
         num2 = setValue(line2, valuesRes);
         num3 = setValue(line3, valuesRes);
@@ -85,9 +85,9 @@ public class Resistor {
     @Override
     public String toString() {
         if (tolerance != 0.0) {
-            return getResistance() + " Oom +/- " + getTolerance() + " %";
+            return getResistance() + " \u03A9 +/- " + getTolerance() + " %";
         } else {
-            return getResistance() + " Oom";
+            return getResistance() + " \u03A9";
         }
     }
 }

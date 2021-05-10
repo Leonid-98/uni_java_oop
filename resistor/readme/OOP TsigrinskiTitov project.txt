@@ -82,17 +82,40 @@ Programm töötab hästi, mulle meeldib kujundus ja disain.Ьiinustest võib mä
 Sain tehtud umbes 6-10 tunniga.
 
 
+##################################
+
+##################################
+
+##################################
 
 ##################################
 2. Rühmatöö. Arendamee edasi meie projekt. Lisame veel deltaY transfromation kalkulaatorja rööbiti ühenduse kalkulaator, veateade logid ja vea töötlus.
 
 Leonidi osa:
 Tegin delta-to-Y kalkulaator. Programm näitab ja kalkuleerib, kuidas kolmnurk ühendus saaks transfromerida.
-Esiteks, lisasin ..........
-потом дописать
+Väga hästi proovisin struktureerida koodi, lisasin eraldi klassid Styler, kus saaks väga mugavat muuta kõik stüülid. 
+Veidi muutusin minu java Swing klassid (Peaklassis Styler), et konstruktor oleks paindlikkum - lisasin rohkem parametid, nagu asukoht, suurus jne.
 
+// Siit tuleb öelda, et kuna Aleksandr lahkub ülikoolist, projekt sai tehtud ainult minuga, seega ma hakkasin siit teha teine kalkulaator -- rööbiti ühenduse kalkulaator interaktiiv TextField lisamisega
 
+Algorimt on üldiselt ühine -- kirjutame midagi TextField'ile, nuppude vajutusel võtab programm arvud vastu ja kalkuleerib kõik. Delta-To-Y ja Värvi Kalkulaatori jaoks oli mõitslik teha
+kalkuleerimiseks eraldi kalss, aga rööbiti ühenduse jaoks veel mitte -- tuleb lihtsalt liita kõik TextField arvud.
+Rööbiti ühendus kalkulaatoriga tegin nii, et meedotiga addTextField() ja removeTextField() lisan ja kustutan TextFieldid, aga samas lisan need kõik Listi. Siis, kui on vaja kalkuleerida numbrid,
+for'iga käin läbi Listi ja võtan kõik numbrid vastu.
 
+Sain veel põhi aken tehtud. Programm on nüüd ühine, kõik on seostatud ja ilus. Kõik aknad, tegelikult, töötavad ka, nad on peidetud. Pea menüüs, kui vajutame nuppu, 
+programm näitab vajalik aken (aken.setVisible(true) meetodiga) ja peidab põhiaken. Ümberkirjutasin EXIT_ON_CLOSE meetodit nii, et kui vajutasime mingile aknale, X vajutusel liikume tagasi põhiakna. 
+Ja juba põhiakna sulgemisel lõpetab programm töö.
+
+Lisaks, kui kasutaja ise sisetab arvu, programm ikka tegeleb veateadega, väljustades kõik info ekraanile ja salvestab vea kohta info .txt failina (logError() meetodiga).
+On olemas ka "?" nuppud, mis seletavad, mille jaoks konktreetne kalkulaator on.
+
+See koord meeldis, et sain kõik teha ilusti, arusaadav ja sturktureeritav. Iga kalkulaatori jaoks on oma Logic ja Gui kalss, kood ise jagatus loogiliseks plokkideks.
+Lisaks, projekt on kergesti suurendav, sest iga Gui + Logic klass on iseseisvalt töötavaid ka (tuleb kusiganes Test kalssis kutsuda Gui klass ja klass.setVisible(true) panna)
+Seega soovitan vaadata üle eraldi GUI + LOGIC klassid ja siis vaadata, kuidas ma seostasin need Main Klassis (nagu eespol mainitud)
+
+Isegi Aleksandri kood (mida ma ise ei viitsi ümberkirjutada :) ) oli ilusti lisatud projekti.
+            
 
 
 

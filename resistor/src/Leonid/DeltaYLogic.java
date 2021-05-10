@@ -1,10 +1,10 @@
 package Leonid;
 
-public class DeltaY {
+public class DeltaYLogic {
     private double sum;
     private double r12, r23, r31;
 
-    public DeltaY(double r1, double r2, double r3) {
+    public DeltaYLogic(double r1, double r2, double r3) {
         r1 = setValue(r1);
         r2 = setValue(r2);
         r3 = setValue(r3);
@@ -33,7 +33,7 @@ public class DeltaY {
         return round(r31);
     }
 
-    public double round(double val) {
+    public static double round(double val) {
         val = val * 1000;
         val = Math.round(val);
         return val / 1000;
