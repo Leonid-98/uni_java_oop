@@ -48,7 +48,7 @@ public class Main {
         mainWindowGui.getButtonFAQ1().addActionListener(e -> openWebpage("https://sisu.ut.ee/elektroonika/28-takistite-v%C3%A4rvikoodid"));
         mainWindowGui.getButtonFAQ2().addActionListener(e -> openWebpage("https://www.allaboutcircuits.com/textbook/direct-current/chpt-10/delta-y-and-y-conversions/"));
 
-        // EXIT_ON_CLOSE asemel
+        // instead of EXIT_ON_CLOSE
         JFrame[] frames = {frame1, frame2, frame3, frame4};
         for (JFrame frame : frames) {
             frame.addWindowListener(new WindowAdapter() {
